@@ -7,9 +7,60 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="manifest" href="manifest.webmanifest">
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: #000;
+        /* Optional: background for unused space */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      #unity-container {
+        position: relative;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        /* Optional: visual styling */
+      }
+    </style>
   </head>
   <body>
     <div id="unity-container">
+      <script>
+        function adjustGameView() {
+          const container = document.getElementById('unity-container');
+          const targetWidth = 720;  // Width of your portrait mode (match Unity setting)
+          const targetHeight = 1280; // Height of your portrait mode (match Unity setting)
+  
+          const windowAspect = window.innerWidth / window.innerHeight;
+          const gameAspect = targetWidth / targetHeight;
+  
+          if (windowAspect > gameAspect) {
+            // Window is wider than the game, center vertically
+            container.style.height = "100%";
+            container.style.width = "auto";
+          } else {
+            // Window is taller than the game, center horizontally
+            container.style.width = "100%";
+            container.style.height = "auto";
+          }
+  
+          // Set the initial size explicitly to match portrait ratio on load
+          container.style.maxWidth = targetWidth + "px";
+          container.style.maxHeight = targetHeight + "px";
+        }
+  
+        // Ensure the game view is adjusted immediately on page load
+        window.addEventListener("resize", adjustGameView);
+        window.addEventListener("load", adjustGameView);
+  
+        document.addEventListener("DOMContentLoaded", adjustGameView);
+      </script>
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
