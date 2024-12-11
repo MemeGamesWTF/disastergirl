@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Disastergirl</title>
+    <title>Unity WebGL Player | Disastergirl</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="manifest" href="manifest.webmanifest">
@@ -83,24 +83,6 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
       }
-	  
-	  // Dynamically resize canvas to always maintain portrait aspect ratio
-      function resizeCanvas() {
-        var aspectRatio = 3 / 4; // Set to portrait (width:height = 3:4)
-        var containerWidth = container.offsetWidth;
-        var containerHeight = container.offsetHeight;
-        if (containerWidth / containerHeight > aspectRatio) {
-          canvas.style.width = (containerHeight * aspectRatio) + "px";
-          canvas.style.height = containerHeight + "px";
-        } else {
-          canvas.style.width = containerWidth + "px";
-          canvas.style.height = (containerWidth / aspectRatio) + "px";
-        }
-      }
-	  
-	  window.addEventListener("resize", resizeCanvas);
-      resizeCanvas();
-	  
 
       loadingBar.style.display = "block";
 
